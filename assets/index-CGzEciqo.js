@@ -1,0 +1,10 @@
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))r(e);new MutationObserver(e=>{for(const s of e)if(s.type==="childList")for(const n of s.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&r(n)}).observe(document,{childList:!0,subtree:!0});function i(e){const s={};return e.integrity&&(s.integrity=e.integrity),e.referrerPolicy&&(s.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?s.credentials="include":e.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function r(e){if(e.ep)return;e.ep=!0;const s=i(e);fetch(e.href,s)}})();const c="461158648526143490";async function a(){try{const o=await fetch(`https://api.lanyard.rest/v1/users/${c}`),{data:t}=await o.json();document.getElementById("avatar").src=`https://cdn.discordapp.com/avatars/${c}/${t.discord_user.avatar}.webp?size=160`,document.getElementById("username").innerText=t.discord_user.global_name||t.discord_user.username;const i=document.getElementById("status-indicator");i.className=`absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-slate-900 status-${t.discord_status}`;const r=document.getElementById("spotify-container");t.listening_to_spotify?(r.classList.remove("hidden"),r.innerHTML=`
+                <div class="flex items-center space-x-3">
+                    <img src="${t.spotify.album_art_url}" class="w-12 h-12 rounded-lg animate-spin-slow">
+                    <div class="flex-1 overflow-hidden">
+                        <p class="text-white text-xs font-bold truncate">${t.spotify.track}</p>
+                        <p class="text-slate-400 text-[10px] truncate">${t.spotify.artist}</p>
+                    </div>
+                    <i data-lucide="music" class="text-green-500 w-4 h-4"></i>
+                </div>
+            `):r.classList.add("hidden"),lucide.createIcons()}catch(o){console.error("Veri çekilemedi:",o)}}a();setInterval(a,3e4);
