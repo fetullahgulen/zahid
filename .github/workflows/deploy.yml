@@ -1,7 +1,8 @@
-name: Deploy Static Content
+name: Deploy to Pages
+
 on:
   push:
-    branches: ["main"] # veya kullandığın ana branch adı
+    branches: ["main"] # Branch adın master ise burayı master yap
 
 permissions:
   contents: read
@@ -22,7 +23,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.' # HTML dosyalarının olduğu klasör
+          path: '.' # HTML dosyan ana dizindeyse '.' kalsın, 'dist' içindeyse 'dist' yap
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
